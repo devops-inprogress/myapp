@@ -1,7 +1,5 @@
 # 🚀 DevSecOps Pipeline mit Kubernetes, n8n & Trivy
 
-# 🚀 DevSecOps Pipeline mit Kubernetes, n8n & Trivy
-
 ![CI/CD Pipeline](https://github.com/devops-inprogress/myapp/actions/workflows/deploy.yml/badge.svg)
 
 ## 📌 Projektübersicht
