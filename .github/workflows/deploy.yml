@@ -1,24 +1,39 @@
-name: CI/CD Pipeline
+name: DevSecOps Scan
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  scan:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Code auschecken
-      uses: actions/checkout@v4
+      - name: Code auschecken
+        uses: actions/checkout@v4
 
-    - name: Build testen
-      run: |
-        echo "✅ Build erfolgreich!"
-        cat index.html
+      - name: Trivy installieren
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.50.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.50.0_Linux-64bit.deb
 
-    - name: Deploy simulieren
-      run: |
-        echo "🚀 Deployment gestartet!"
-        echo "App wurde deployed!"
-        echo "✅ Deployment erfolgreich!"
+      - name: Trivy Scan ausführen
+        run: |
+          trivy fs . -f json > result.json
+
+      - name: Ergebnis an n8n senden und Pipeline blocken
+        run: |
+          RESPONSE=$(curl -s -X POST https://rings-labeled-department-apparently.trycloudflare.com/webhook/trivy-report \
+            -H "Content-Type: application/json" \
+            --data @result.json)
+
+          echo "Response: $RESPONSE"
+
+          if [[ "$RESPONSE" == *"blocked"* ]]; then
+            echo "Security issue found - failing pipeline"
+            exit 1
+          else
+            echo "No blocking security issues"
+          fi
