@@ -1,5 +1,9 @@
 # 🚀 DevSecOps Pipeline mit Kubernetes, n8n & Trivy
 
+# 🚀 DevSecOps Pipeline mit Kubernetes, n8n & Trivy
+
+![CI/CD Pipeline](https://github.com/devops-inprogress/myapp/actions/workflows/deploy.yml/badge.svg)
+
 ## 📌 Projektübersicht
 
 Dieses Projekt demonstriert eine automatisierte DevSecOps-Pipeline, die Sicherheitsprüfungen direkt in einen CI/CD-Prozess integriert.
