@@ -1,5 +1,3 @@
-FROM ubuntu:18.04
-RUN apt-get update && apt-get install -y openssl
-git add .
-git commit -m "force vulnerability"
-git push
+FROM node:20-bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+  && rm -rf /var/lib/apt/lists/*
