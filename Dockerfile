@@ -1,2 +1,2 @@
-FROM node:14
-RUN apt-get update && apt-get install -y curl
+FROM ubuntu:18.04
+RUN apt-get update && apt-get install -y openssl
