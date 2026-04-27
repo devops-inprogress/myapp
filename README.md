@@ -1,37 +1,31 @@
-# 🚀 DevSecOps Pipeline mit Kubernetes, n8n & Trivy
-
+# 🚀 DevSecOps Pipeline with Kubernetes, n8n & Trivy
 ![CI/CD Pipeline](https://github.com/devops-inprogress/myapp/actions/workflows/deploy.yml/badge.svg)
 
-## 📌 Projektübersicht
-
-Dieses Projekt demonstriert eine automatisierte DevSecOps-Pipeline, die Sicherheitsprüfungen direkt in einen CI/CD-Prozess integriert.
-
-Der Code wird mit Trivy gescannt, die Ergebnisse über n8n ausgewertet und basierend auf der Schwere automatisch entschieden, ob die Pipeline fortgesetzt oder gestoppt wird.
+## 📌 Project Overview
+This project demonstrates an automated DevSecOps pipeline that integrates security checks directly into a CI/CD process.
+Code is scanned with Trivy, results are evaluated through n8n, and based on severity, the pipeline automatically decides whether to continue or stop.
 
 ---
 
-## 🧠 Architektur
-
+## 🧠 Architecture
 Code Push (GitHub)
         ↓
 GitHub Actions (CI/CD)
         ↓
-Trivy Scan (Security Analyse)
+Trivy Scan (Security Analysis)
         ↓
 Webhook → n8n (Decision Engine)
         ↓
 IF Logic (HIGH / CRITICAL)
         ↓
 ❌ Pipeline FAIL + Telegram Alert
-oder
+or
 ✅ Pipeline SUCCESS
 
 ---
 
 ## 👉 Tech Stack
-
-## ⚙️ Technologien
-
+## ⚙️ Technologies
 - Kubernetes (k3s)
 - Proxmox VE
 - n8n (Workflow Automation)
@@ -42,30 +36,25 @@ oder
 
 ---
 
-## 🔐 Sicherheitslogik
-
-| Severity        | Aktion                    |
+## 🔐 Security Logic
+| Severity        | Action                    |
 |----------------|--------------------------|
-| CRITICAL / HIGH | ❌ Pipeline wird gestoppt |
-| LOW / MEDIUM    | ✅ Pipeline läuft weiter  |
+| CRITICAL / HIGH | ❌ Pipeline stops         |
+| LOW / MEDIUM    | ✅ Pipeline continues     |
 
 ---
 
-## 📡 Beispiel Output
-
+## 📡 Example Output
 ❌ Security issue found - failing pipeline  
-📱 Telegram Alert ausgelöst  
-
-oder  
-
+📱 Telegram Alert triggered  
+or  
 ✅ No blocking security issues
 
 ---
 
 ## 🧠 Learnings
-
-- Aufbau eines Kubernetes Clusters (k3s)
-- Integration von Security Scans in CI/CD
-- Automatisierte Entscheidungslogik mit n8n
-- Webhook-basierte Kommunikation
-- Umsetzung eines Security Gates
+- Building a Kubernetes cluster (k3s)
+- Integrating security scans into CI/CD
+- Automated decision logic with n8n
+- Webhook-based communication
+- Implementation of a security gate
